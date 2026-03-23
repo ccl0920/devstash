@@ -59,7 +59,7 @@ flowchart TD
     subgraph "Application Layer"
         Next --> Auth[🔐 Auth.js v5]
         Next --> API[🔌 API Routes / Server Actions]
-        API --> AI[🧠 Qwen Service]
+        API --> AI[🧠 OpenAI Service]
         API --> Storage[📦 Cloudflare R2]
     end
     
@@ -261,7 +261,7 @@ model ItemCollection {
 *   **Filters:** Filter by Type, Tag, Collection, Date.
 
 ### D. AI Features (Pro)
-*   **Stack:** Vercel AI SDK + Qwen.
+*   **Stack:** Vercel AI SDK + OpenAI (https://developer.puter.com/tutorials/use-vercel-ai-sdk-with-puter/).
 *   **Models:** 
     *   *Standard:* `gpt-4o-mini` (Fast/Cheap for tags/summaries).
     *   *Complex:* `gpt-4o` (For code explanation).
@@ -345,7 +345,7 @@ graph TD
 | **Auth** | Auth.js v5 (NextAuth) | [authjs.dev](https://authjs.dev) |
 | **UI** | ShadCN UI + Tailwind v4 | [ui.shadcn.com](https://ui.shadcn.com) |
 | **Storage** | Cloudflare R2 | [cloudflare.com/r2](https://cloudflare.com/r2) |
-| **AI** | Qwen API (Qwen Qwen3.5-0.8B) | [qwen.ai/apiplatform](https://qwen.ai/apiplatform) |
+| **AI** | OpenAI (OpenAI gpt-5-nano) | [developer.puter.com/tutorials/free-unlimited-openai-api/#example-1-use-gpt-54-nano-for-text-generation](https://developer.puter.com/tutorials/free-unlimited-openai-api/#example-1-use-gpt-54-nano-for-text-generation) |
 | **Payments** | Stripe Checkout | [stripe.com](https://stripe.com) |
 | **Icons** | Lucide React | [lucide.dev](https://lucide.dev) |
 
