@@ -18,6 +18,17 @@
 
 <!-- Keep this updated. Earliest to latest -->
 
+### 2026-03-24 - Dashboard Phase 2 Completed
+- Fixed hydration mismatch by using static dates in mock data and spreading array before sorting
+- Fixed mobile menu button overlap with TopBar by adding left padding on mobile
+- Implemented collapsible sidebar with PanelLeft icons
+- Implemented Items/Types navigation section with dynamic links
+- Implemented Favorite collections section with Star icons
+- Implemented Recent collections section with Clock icons
+- Implemented user avatar area at bottom of sidebar
+- Mobile-responsive: drawer slides in from left on mobile view
+- Build passes with no errors
+
 ### 2026-03-24 - Dashboard Phase 1 Completed
 - Implemented full dashboard layout with sidebar, top bar, and main content area
 - Installed ShadCN UI components (button, input, card, badge, dropdown-menu, avatar, separator, scroll-area)

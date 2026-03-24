@@ -76,8 +76,8 @@ export const items = [
     isPinned: true,
     typeId: "type_1",
     userId: "user_1",
-    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-    updatedAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
+    createdAt: new Date("2024-03-01T10:00:00"),
+    updatedAt: new Date("2024-03-01T10:00:00"),
   },
   {
     id: "item_2",
@@ -90,8 +90,8 @@ export const items = [
     isPinned: true,
     typeId: "type_2",
     userId: "user_1",
-    createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000), // 5 hours ago
-    updatedAt: new Date(Date.now() - 5 * 60 * 60 * 1000),
+    createdAt: new Date("2024-03-01T07:00:00"),
+    updatedAt: new Date("2024-03-01T07:00:00"),
   },
   {
     id: "item_3",
@@ -104,8 +104,8 @@ export const items = [
     isPinned: true,
     typeId: "type_3",
     userId: "user_1",
-    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
-    updatedAt: new Date(Date.now() - 24 * 60 * 60 * 1000),
+    createdAt: new Date("2024-02-28T12:00:00"),
+    updatedAt: new Date("2024-02-28T12:00:00"),
   },
   {
     id: "item_4",
@@ -118,8 +118,8 @@ export const items = [
     isPinned: false,
     typeId: "type_4",
     userId: "user_1",
-    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
-    updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    createdAt: new Date("2024-02-27T15:00:00"),
+    updatedAt: new Date("2024-02-27T15:00:00"),
   },
   {
     id: "item_5",
@@ -132,8 +132,8 @@ export const items = [
     isPinned: false,
     typeId: "type_5",
     userId: "user_1",
-    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
-    updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    createdAt: new Date("2024-02-26T09:00:00"),
+    updatedAt: new Date("2024-02-26T09:00:00"),
   },
   {
     id: "item_6",
@@ -147,8 +147,8 @@ export const items = [
     isPinned: false,
     typeId: "type_6",
     userId: "user_1",
-    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 1 week ago
-    updatedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    createdAt: new Date("2024-02-22T14:00:00"),
+    updatedAt: new Date("2024-02-22T14:00:00"),
   },
 ];
 

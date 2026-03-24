@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export function TopBar() {
   return (
     <header className="border-b border-zinc-800 bg-zinc-900 p-4">
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-4 md:pl-0 pl-14">
         <div className="flex-1 max-w-md">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
