@@ -197,3 +197,12 @@ export const stats = {
   collections: 12,
   tags: 47,
 };
+
+// Calculate item counts per type
+export function getItemCountByType(): Record<string, number> {
+  const counts: Record<string, number> = {};
+  items.forEach((item) => {
+    counts[item.typeId] = (counts[item.typeId] || 0) + 1;
+  });
+  return counts;
+}

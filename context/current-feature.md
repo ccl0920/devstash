@@ -18,6 +18,15 @@
 
 <!-- Keep this updated. Earliest to latest -->
 
+### 2026-03-24 - Dashboard Phase 3 Completed
+- Refactored main content into separate components: `stats-cards.tsx`, `item-card.tsx`, `pinned-items.tsx`, `recent-items.tsx`
+- Implemented 4 stats cards (items, collections, favorite items, favorite collections)
+- Implemented Pinned Items section with card layout
+- Implemented Recent Items section showing 10 most recent items
+- Item cards show type icon/color, title, description, tags, and footer with time/collection
+- Added item count badges next to each item type in sidebar (matching screenshot design)
+- Build passes with no errors
+
 ### 2026-03-24 - Dashboard Phase 2 Completed
 - Fixed hydration mismatch by using static dates in mock data and spreading array before sorting
 - Fixed mobile menu button overlap with TopBar by adding left padding on mobile

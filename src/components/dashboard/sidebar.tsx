@@ -25,7 +25,7 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useSidebar } from "./sidebar-context";
-import { itemTypes, collections, currentUser } from "@/lib/mock-data";
+import { itemTypes, collections, currentUser, getItemCountByType } from "@/lib/mock-data";
 
 // Map icon names to Lucide components
 const iconMap: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
@@ -40,6 +40,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string; style?: 
 export function Sidebar() {
   const pathname = usePathname();
   const { isCollapsed, isMobileOpen, toggle, toggleMobile } = useSidebar();
+  const itemCounts = getItemCountByType();
 
   const favoriteCollections = collections.filter((c) => c.isFavorite);
   const recentCollections = [...collections]
@@ -107,23 +108,27 @@ export function Sidebar() {
                   const Icon = iconMap[type.icon] || File;
                   const href = `/items/${type.slug}`;
                   const isActive = pathname === href;
+                  const count = itemCounts[type.id] || 0;
 
                   return (
                     <Link
                       key={type.id}
                       href={href}
                       className={cn(
-                        "flex items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors",
+                        "flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm transition-colors",
                         isActive
                           ? "bg-blue-600 text-white"
                           : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
                       )}
                     >
-                      <Icon
-                        className="h-4 w-4 shrink-0"
-                        style={{ color: type.color }}
-                      />
-                      <span className="truncate">{type.name}</span>
+                      <div className="flex items-center gap-3">
+                        <Icon
+                          className="h-4 w-4 shrink-0"
+                          style={{ color: type.color }}
+                        />
+                        <span className="truncate">{type.name}</span>
+                      </div>
+                      <span className="text-xs text-zinc-500 shrink-0">{count}</span>
                     </Link>
                   );
                 })}
@@ -376,6 +381,7 @@ export function Sidebar() {
 function SidebarNonCollapsedContent() {
   const pathname = usePathname();
   const { toggleMobile } = useSidebar();
+  const itemCounts = getItemCountByType();
 
   const favoriteCollections = collections.filter((c) => c.isFavorite);
   const recentCollections = [...collections]
@@ -418,23 +424,27 @@ function SidebarNonCollapsedContent() {
                 const Icon = iconMap[type.icon] || File;
                 const href = `/items/${type.slug}`;
                 const isActive = pathname === href;
+                const count = itemCounts[type.id] || 0;
 
                 return (
                   <Link
                     key={type.id}
                     href={href}
                     className={cn(
-                      "flex items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors",
+                      "flex items-center justify-between gap-3 rounded-md px-2 py-2 text-sm transition-colors",
                       isActive
                         ? "bg-blue-600 text-white"
                         : "text-zinc-400 hover:bg-zinc-800 hover:text-white"
                     )}
                   >
-                    <Icon
-                      className="h-4 w-4 shrink-0"
-                      style={{ color: type.color }}
-                    />
-                    <span className="truncate">{type.name}</span>
+                    <div className="flex items-center gap-3">
+                      <Icon
+                        className="h-4 w-4 shrink-0"
+                        style={{ color: type.color }}
+                      />
+                      <span className="truncate">{type.name}</span>
+                    </div>
+                    <span className="text-xs text-zinc-500 shrink-0">{count}</span>
                   </Link>
                 );
               })}
