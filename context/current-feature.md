@@ -18,6 +18,20 @@
 
 <!-- Keep this updated. Earliest to latest -->
 
+### 2026-03-25 - Prisma + Neon Setup Completed
+- Installed Prisma 7.5.0 and @prisma/adapter-neon
+- Initialized Prisma with PostgreSQL provider
+- Created schema with Auth.js v5 models (User, Account, Session, VerificationToken)
+- Created domain models (Item, ItemType, Collection, Tag) with relations
+- Added indexes on userId and typeId fields
+- Configured cascade deletes for all relations
+- Used @@map() for snake_case table names
+- Created initial migration with `prisma migrate dev --name init`
+- Set up Prisma client with Neon adapter in `src/lib/prisma.ts`
+- Created seed script with dummy data (1 user, 5 types, 3 collections, 4 tags, 5 items)
+- Build passes with no errors
+- Branch: feature/prisma-neon-setup
+
 ### 2026-03-24 - Dashboard Phase 3 Completed
 - Refactored main content into separate components: `stats-cards.tsx`, `item-card.tsx`, `pinned-items.tsx`, `recent-items.tsx`
 - Implemented 4 stats cards (items, collections, favorite items, favorite collections)

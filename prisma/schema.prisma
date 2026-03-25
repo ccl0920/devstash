@@ -1,0 +1,156 @@
+// Prisma schema for DevStash
+// Built with Prisma 7 + Neon PostgreSQL
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// --- Authentication (Auth.js v5) ---
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  isPro         Boolean   @default(false)
+  stripeCustomerId String?
+  stripeSubscriptionId String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  items         Item[]
+  collections   Collection[]
+  itemTypes     ItemType[]
+  tags          Tag[]
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// --- Core Domain Models ---
+
+model ItemType {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  icon        String
+  color       String
+  isSystem    Boolean  @default(false)
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items       Item[]
+
+  @@unique([userId, name])
+  @@map("item_types")
+}
+
+model Item {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  content     String?  @db.Text
+  contentType String   @default("text")
+  
+  // File Specifics
+  fileUrl     String?
+  fileName    String?
+  fileSize    Int?
+  
+  // Link Specifics
+  url         String?
+  
+  // Metadata
+  language    String?
+  isFavorite  Boolean  @default(false)
+  isPinned    Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  typeId      String
+  type        ItemType @relation(fields: [typeId], references: [id], onDelete: Cascade)
+  
+  collections Collection[] @relation("ItemCollections")
+  tags        Tag[]        @relation("ItemTags")
+
+  @@index([userId])
+  @@index([typeId])
+  @@map("items")
+}
+
+model Collection {
+  id          String   @id @default(cuid())
+  name        String
+  description String?  @db.Text
+  isFavorite  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  items       Item[]   @relation("ItemCollections")
+
+  @@index([userId])
+  @@map("collections")
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     Item[]   @relation("ItemTags")
+
+  @@unique([userId, name])
+  @@index([userId])
+  @@map("tags")
+}
